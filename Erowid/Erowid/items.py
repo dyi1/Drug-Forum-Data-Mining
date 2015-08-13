@@ -8,7 +8,9 @@
 import scrapy
 
 
-class ErowidScrapeItem(scrapy.Item):
-    # define the fields for your item here like:
+class ErowidItem(scrapy.Item):
+    Title = scrapy.Field()
+    Author = scrapy.Field()
+    Text = scrapy.Field()
+    substance = scrapy.Field()
     # name = scrapy.Field()
-    pass
