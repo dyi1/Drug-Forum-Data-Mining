@@ -12,5 +12,5 @@ class ErowidItem(scrapy.Item):
     Title = scrapy.Field()
     Author = scrapy.Field()
     Text = scrapy.Field()
-    substance = scrapy.Field()
+    Substance = scrapy.Field()
     # name = scrapy.Field()
