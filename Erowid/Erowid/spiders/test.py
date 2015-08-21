@@ -23,5 +23,5 @@ class ExperiencesSpider(CrawlSpider):
             experience['Title'] = selector.xpath('//div[@class="title"]/text()').extract
             experience['Substance'] = selector.xpath('//div[@class="substance"]/text()').extract
             experience['Text'] = selector.xpath("//div[@class = 'report-text-surround']/text()").extract
+
         yield experience
-##Need to fix the above formatting

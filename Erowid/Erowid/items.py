@@ -5,12 +5,11 @@
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from scrapy.item import Item, Field
 
-
-class ErowidItem(scrapy.Item):
-    Title = scrapy.Field()
-    Author = scrapy.Field()
-    Text = scrapy.Field()
-    Substance = scrapy.Field()
+class ErowidItem(Item):
+    Title = Field(serializer=str)
+    Author = Field(serializer=str)
+    Text = Field(serializer=str)
+    Substance = Field(serializer=str)
     # name = scrapy.Field()
