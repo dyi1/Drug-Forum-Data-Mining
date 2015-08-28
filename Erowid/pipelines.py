@@ -14,7 +14,7 @@ class ErowidPipeline(object):
     			 'substance': item['Substance']}
 
     	directory = os.path.join('Erowid/archive/',cargo['substance'][0].strip().lower())
-    	filename = os.path.join(directory,cargo['title'][0]+'.txt')
+    	filename = os.path.join(directory,cargo['title']+'.txt')
 
     	if not os.path.exists(directory):
     		os.makedirs(directory)
