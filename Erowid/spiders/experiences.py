@@ -24,8 +24,16 @@ class ExperiencesSpider(CrawlSpider):
             experience['Title'] = selector.xpath('//div[@class="title"]/text()').extract()
             experience['Substance'] = selector.xpath('//div[@class="substance"]/text()').extract()
             experience['Text'] = selector.xpath("//div[@class = 'report-text-surround']/text()").extract()
+            experience['Title'] = str(experience['Title'])[3:-2].strip()
+            # Removes all of the reserved characters from name
             experience['Title'] =  str(experience['Title']).replace('\\' , "")
             experience['Title'] =  str(experience['Title']).replace('?' , "")
             experience['Title'] =  str(experience['Title']).replace('*' , "")
+            experience['Title'] =  str(experience['Title']).replace('>' , "")
+            experience['Title'] =  str(experience['Title']).replace('<' , "")
+            experience['Title'] =  str(experience['Title']).replace(':' , "")
+            experience['Title'] =  str(experience['Title']).replace('"' , "")
+            experience['Title'] =  str(experience['Title']).replace('/' , "")
+            experience['Title'] =  str(experience['Title']).replace('|' , "")
         yield experience
        ##Will move the code over from test.py after
