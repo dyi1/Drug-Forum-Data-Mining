@@ -20,10 +20,12 @@ class ExperiencesSpider(CrawlSpider):
         selectors = response.css('div')
         for selector in selectors:
             experience = ErowidItem()
-            experience['Author'] = selector.xpath('//div[@class="author"]/a/text()').extract
-            experience['Title'] = selector.xpath('//div[@class="title"]/text()').extract
-            experience['Substance'] = selector.xpath('//div[@class="substance"]/text()').extract
-            experience['Text'] = selector.xpath("//div[@class = 'report-text-surround']/text()").extract
-
+            experience['Author'] = selector.xpath('//div[@class="author"]/a/text()').extract()
+            experience['Title'] = selector.xpath('//div[@class="title"]/text()').extract()
+            experience['Substance'] = selector.xpath('//div[@class="substance"]/text()').extract()
+            experience['Text'] = selector.xpath("//div[@class = 'report-text-surround']/text()").extract()
+            experience['Title'] =  str(experience['Title']).replace('\\' , "")
+            experience['Title'] =  str(experience['Title']).replace('?' , "")
+            experience['Title'] =  str(experience['Title']).replace('*' , "")
         yield experience
        ##Will move the code over from test.py after
