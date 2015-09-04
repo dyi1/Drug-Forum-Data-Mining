@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 import os
-startpath = os.path.join("Erowid/", "archive") # Should be ...\archive
-CORPUS_PATHS = sorted([os.path.join("Erowid/archive/", directories) for directories in os.listdir(startpath)])
-filenames = []
-for items in CORPUS_PATHS:
-    filenames.append(sorted([os.path.join(CORPUS_PATHS, fn) for fn in os.listdir(items)]))
+startpath = "archive"
+corpus_path = sorted([os.path.join("archive/", directories) for directories in os.listdir(startpath)])
 
-print filenames
+filenames = []
+for items in corpus_path:
+    print items
+    swag = [os.path.join(corpus_path, fn) for fn in os.listdir(items)]
+    print swag
+    #filenames.append(sorted([os.path.join(corpus_path, fn) for fn in os.listdir(items)]))
+
+#print filenames
