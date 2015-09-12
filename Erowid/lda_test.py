@@ -5,7 +5,7 @@ from __future__ import print_function
 import lda
 import numpy as np
 import textmining
-swag = "archive/2c-b/Accidental Overdose Panic.txt"
+swag = "../archive/2c-b/Accidental Overdose Panic.txt"
 # Create some very short sample documents
 with open (swag, "r") as fid:
     doc1 = fid.read().replace('\n', '')
