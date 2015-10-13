@@ -15,7 +15,7 @@ idx = range(len(frequency))
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
-ax.bar(idx,frequency, color='k', log=True)
+ax.bar(idx,frequency, color='k')
 
 artist.adjust_spines(ax)
 ax.set_ylabel(artist.format('No. of mentions'))
