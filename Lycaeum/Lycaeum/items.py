@@ -10,4 +10,5 @@ from scrapy.item import Item, Field
 
 class LycaeumItem(Item):
     Text = Field(serializer=str)
+    Title = Field(serializer=str)
     Substance = Field(serializer=str)

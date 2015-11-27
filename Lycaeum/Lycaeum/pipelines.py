@@ -10,12 +10,13 @@ class LycaeumPipeline(object):
     def process_item(self, item, spider):
         cargo =  {
               'text': item['Text'],
-    			 'substance': item['Substance']}
+    			 'substance': item['Substance'],
+              'title' : item ['Title'] }
         
         
 
-        directory = os.path.join('Lycaeum/archive/',cargo['substance'].strip().lower())
-        filename = os.path.join(directory,cargo['substance']+'.txt') #
+        directory = os.path.join('Lycaeum/forums/',cargo['title'].strip().lower())
+        filename = os.path.join(directory,cargo['title']+'.txt') #
 
         if not os.path.exists(directory):
             os.makedirs(directory)
