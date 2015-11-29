@@ -5,10 +5,13 @@ from scrapy.linkextractors import LinkExtractor
 from scrapy.selector import HtmlXPathSelector
 from Lycaeum.items import LycaeumItem 
 
+forum_numbers = [2,3,28,14,36,16,6]
+
 class SubstanceDataSpider(CrawlSpider):
     name = "Substance_Data"
     allowed_domains = ["www.lycaeum.org"]
-    start_urls = ['http://www.lycaeum.org/wiki/Main_Page']
+    start_urls = ['http://www.lycaeum.org/forum/index.php?board=%.01f'%float(forum_number) 
+                    for forum_number in forum_numbers]
          
     rules = [
     Rule(LinkExtractor(allow=r'/wiki/.+'), callback='parse_item', follow=True)
