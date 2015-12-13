@@ -8,16 +8,30 @@ from matplotlib import pyplot as plt
 #py.sign_in('user', 'api_key') ##replace with user and api key
 
 data = np.load('interaction_matrix-2015-11-28-w-deduped-curated-drug-names.npy')
+data[np.diag_indices_from(data)] /= 2. #Forgot to tell you this- MC
+
+standarize_matrix = np.empty_like(data) #Faster than copying alone
 standarize_matrix = data[:,:] 
+
+
+## --> Don't need a loop
+'''
 
 largest = 0
 minimum = 0
-
 for i in xrange(968):
     for j in xrange(968):
         if data[i,j] > largest:
             largest = data[i,j]
+'''
 
+largest = data.max()
+smallest = data.min()
+
+scaled_matrix = 
+
+#Again, don't need a loop
+#Avoid magic constants, 968 is more mysterious than scaled_matrix.shape
 for i in xrange(968):
     for j in xrange(968):
         standarize_matrix[i,j] = (data[i,j]/largest)         
