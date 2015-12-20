@@ -41,29 +41,25 @@ eig_pairs.reverse()
 # Visually confirm that the list is correctly sorted by decreasing eigenvalues
 print('Eigenvalues in descending order:')
 for i in eig_pairs:
-    print(i[0])
+    print(i[0]) <-- Good, this is called a scree plot. (FYI.)
+
 
 ## Graph the effects of the eigenvalues. See which cause the most variance
 tot = sum(eig_vals)
 var_exp = [(i / tot)*100 for i in sorted(eig_vals, reverse=True)]
 cum_var_exp = np.cumsum(var_exp)
-
 trace1 = Bar(
         x=['PC %s' %i for i in range(1,200)],
         y=var_exp,
         showlegend=False)
-
 trace2 = Scatter(
         x=['PC %s' %i for i in range(1,200)], 
         y=cum_var_exp,
         name='cumulative explained variance')
-
 swag = Data([trace1, trace2])
-
 layout=Layout(
         yaxis=YAxis(title='Explained variance in percent'),
         title='Explained variance by different principal components')
-
 fig = Figure(data=swag, layout=layout)
 py.iplot(fig)
 '''
@@ -83,4 +79,3 @@ plt.ylabel('y_values')
 plt.legend()
 plt.title('Praying I did this properly')
 plt.show()
-
