@@ -1,27 +1,16 @@
-import logging
-logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
-from gensim import corpora, models, 
-from nltk.corpus import stopwords
-import codecs
+import json
+from gensim import corpora, models, similarities
 
-documents = []
-with codecs.open("Master_File_Forums.txt", encoding = 'utf-8', mode= "r") as fid:
-   for line in fid:
-       documents.append(line)
-stoplist = []
-x = stopwords.words('english')
-for word in x:
-    stoplist.append(word)
-
-##Removes Stopwords
-texts = [[word for word in document.lower().split() if word not in stoplist] for document in documents]
+texts = [item['text'] for item in json.load(open('lycaeum-forum-processed-has-drug-names.json','r')).itervalues()]
 
 dictionary = corpora.Dictionary(texts)
 corpus = [dictionary.doc2bow(text) for text in texts]
-print dictionary
-print corpus
-
 tfidf = models.TfidfModel(corpus)
-    
-    
-    
+corpus_tfidf = tfidf[corpus]
+lsi = models.lsimodel.LsiModel(corpus=corpus_tfidf, id2word=dictionary, num_topics=400)
+corpus_lsi = lsi[corpus_tfidf]
+
+num_topics = 100
+with open('topics','w') as outfile:
+	for i in xrange(num_topics):
+		print>>outfile,lsi.print_topic(i)
