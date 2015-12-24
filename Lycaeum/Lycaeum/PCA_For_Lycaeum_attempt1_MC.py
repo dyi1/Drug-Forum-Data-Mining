@@ -7,12 +7,12 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 plt.xkcd()
 data = np.load('interaction_matrix-2015-11-28-w-deduped-curated-drug-names.npy')
+print data[:10,3]
 data[np.diag_indices_from(data)] /= 2. #Forgot to tell you this- MC
+data = np.log(1.+data) #log because decreasing marginal importance
 
-#data = np.log(1+data)
-data = (data-data.min())/(data.max()-data.min())
+data = (data-data.min(axis=1))/(data.max(axis=1)-data.min(axis=1))
 
-#data = data.dot(data.T) # Make matrix postivie definite
 
 cutoff = 10
 eig_vals, eig_vecs = np.linalg.eigh(data) #Wrong function
@@ -26,7 +26,7 @@ eig_vals = eig_vals[idx] # sorting eigenvalues
 score = np.dot(eig_vecs.T,data) # projection of the data in the new space
 
 eig_vals /= eig_vals.max()
-
+print eig_vals[:10]
 fig,axs = plt.subplots(nrows=1,ncols=3, figsize=(14,6.5))
 
 #-- Raw data
@@ -58,4 +58,5 @@ axs[2].set_ylabel('Weight')
 
 
 plt.tight_layout()
-plt.savefig('pca-xkcd.png')
+plt.savefig('pca-xkcd-from-corr.png')
+
