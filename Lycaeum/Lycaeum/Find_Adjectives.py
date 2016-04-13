@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-"""
-Spyder Editor
 
-This is a temporary script file.
-"""
 import os
 import nltk
 import string
+import json
      
 printable = set(string.printable) # not all of the forum is ascii friendly
 
