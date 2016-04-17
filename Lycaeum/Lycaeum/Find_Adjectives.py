@@ -28,9 +28,8 @@ for root, dirs, files in os.walk("forums"):
             adjectives = [i for i in result if i[1].lower() == 'jj']
             for drug in drug_names:
                 if drug in sentence:
-                    drug_adjectives[drug].append(adj for adj in adjectives)
-                    print drug
-            
+                    for adj in adjectives:
+                        drug_adjectives[drug].append(adj[0])
 
 
 print drug_adjectives
