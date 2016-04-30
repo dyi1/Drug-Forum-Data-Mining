@@ -68,7 +68,6 @@ for root, dirs, files in os.walk("forums"):
             new_sentence = ""
             for word in sentence.split():
                 new_sentence += (correct(word) + " ")
-            
 
             text = nltk.word_tokenize(sentence)
             text2 = nltk.word_tokenize(new_sentence)
@@ -101,8 +100,8 @@ for root, dirs, files in os.walk("forums"):
                 if drug in sentence:
                     for adj in adjectives:
                         drug_adjectives[drug].append(adj[0])
-                    for checked_adj in adjectives:
-                        drug_adjectives[drug].append(adj[0])
+                    for checked_adj in adjectives2:
+                        drug_adjectives[drug].append(checked_adj[0])
 
 
 print drug_adjectives
